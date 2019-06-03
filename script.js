@@ -681,6 +681,7 @@ window.onload = function () {
     <select class="filterValues "></select>
     <label >Введите значение:</label>
     <select class="filterValues" ></select>
+    <button class="btn clearFilters">Clear</button>
   </div>
   <div class="filterRight">
     <h2>Фильтр</h2>
@@ -743,7 +744,12 @@ window.onload = function () {
     reloadAll();
   }
   bindSelects();
-
+  document.querySelector(".clearFilters").addEventListener("click",()=>{
+    [].forEach.call(document.querySelectorAll(".filterValues"),(value)=>{
+      value.value = "";
+      filterPizzas();
+    })
+  });
   document.querySelector(".addPizza").addEventListener("click", (e) => {
     document.querySelector(".addPizza").setAttribute("class", "btn addPizza hide");
     if (document.querySelector(".cartContainer")) {
@@ -890,7 +896,7 @@ window.onload = function () {
     addPizzaContainer.appendChild(addPizzaButton);
     if (!document.querySelector(".addPizzaContainer"))
       document.querySelector(".addPizza").after(addPizzaContainer);
-  })
+  });
   document.querySelector(".cartCont").addEventListener("click", (e) => {
     document.querySelector(".cartCont").setAttribute("class", "btn cartCont hide");
     if (document.querySelector(".addPizzaContainer")) {
@@ -1001,7 +1007,7 @@ window.onload = function () {
 
     if (!document.querySelector(".cartContainer"))
       document.querySelector(".cartCont").after(cartContainer);
-  })
+  });
 }
 
 function reloadPizzas() {
